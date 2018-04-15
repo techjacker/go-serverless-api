@@ -5,11 +5,12 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/apex/gateway"
 	"github.com/julienschmidt/httprouter"
 )
 
 const (
-	serverPort = 8000
+	serverPort = 9000
 )
 
 func main() {
@@ -17,6 +18,6 @@ func main() {
 	router.Handler("GET", "/", http.HandlerFunc(HealthHandler))
 	router.Handler("GET", "/healthz", http.HandlerFunc(HealthHandler))
 
-	fmt.Printf("Server listening on port: %d\n", serverPort)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", serverPort), router), nil)
+	fmt.Printf("Lambda Server listening on port: %d\n", serverPort)
+	log.Fatal(gateway.ListenAndServe(fmt.Sprintf(":%d", serverPort), router), nil)
 }
