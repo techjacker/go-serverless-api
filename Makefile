@@ -1,16 +1,25 @@
+PACKAGE_NAME=$(shell basename $(PWD))
+PACKAGE_NAME_LAMBDA=$(PACKAGE_NAME)-lambda
 PORT = 8000
 
 build:
-	@go build -race -o go-serverless-api ./cmd/go-serverless-api
+	@go build -race \
+		-o go-serverless-api \
+		./cmd/$(PACKAGE_NAME)
 
 build-lambda:
-	@GOOS=linux go build -race -o go-serverless-api-lambda ./cmd/go-serverless-api-lambda
+	@GOOS=linux go build -race \
+		-o $(PACKAGE_NAME)-lambda \
+		./cmd/$(PACKAGE_NAME_LAMBDA)
+
+bundle-lambda: build-lambda
+	zip $(PACKAGE_NAME_LAMBDA) $(PACKAGE_NAME_LAMBDA).zip
 
 run: build
-	@./$(shell basename $(PWD))
+	@./$(PACKAGE_NAME)
 
 run-lambda: build-lambda
-	@./$(shell basename $(PWD))-lambda
+	@./$(PACKAGE_NAME_LAMBDA)
 
 
 # https://github.com/dominikh/go-tools/
@@ -25,14 +34,8 @@ lint:
 test:
 	@go test
 
-test-cover:
-	@go test -cover
-
-test-race:
-	@go test -race
-
 test-run:
 	@curl http://localhost:$(PORT)/healthz
 	@echo ""
 
-.PHONY: test* lint install build
+.PHONY: build* run* test* bundle-lambda

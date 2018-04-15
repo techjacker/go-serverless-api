@@ -1,8 +1,9 @@
 language: go
 
 go:
-  - 1.10
-  - master
+  # https://docs.travis-ci.com/user/languages/go/
+  # Note that, in order to choose Go 1.10, you must use go: "1.10" (a string), not go: 1.10 (a float). Using a float results in the use of Go 1.1.
+  - "1.10"
 
 before_install:
   - go get -u golang.org/x/lint/golint
