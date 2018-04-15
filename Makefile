@@ -1,23 +1,21 @@
 PORT = 8000
 
 build:
-	@go build -race -o go-serverless-api $(shell make main-files)
+	@go build -race -o go-serverless-api ./cmd/go-serverless-api
 
 build-lambda:
-	@GOOS=linux go build -race -o go-serverless-api-lambda $(shell make lambda-files)
-
-main-files:
-	@find . -maxdepth 1 -mindepth 1 -name \*.go -a -not -name main-lambda.go | xargs
-
-lambda-files:
-	@find . -maxdepth 1 -mindepth 1 -name \*.go -a -not -name main.go | xargs
+	@GOOS=linux go build -race -o go-serverless-api-lambda ./cmd/go-serverless-api-lambda
 
 run: build
 	@./$(shell basename $(PWD))
 
+run-lambda: build-lambda
+	@./$(shell basename $(PWD))-lambda
+
+
 # https://github.com/dominikh/go-tools/
 lint:
-	@golint  -set_exit_status ./...
+	@golint -set_exit_status $(go list ./... | grep -v /vendor/)
 	@go vet ./...
 	@interfacer $(go list ./... | grep -v /vendor/)
 	@gosimple ./...

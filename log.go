@@ -1,4 +1,4 @@
-package main
+package goserverlessapi
 
 // Logger is the logger interface
 type Logger interface {

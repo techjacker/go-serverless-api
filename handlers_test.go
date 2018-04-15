@@ -1,4 +1,4 @@
-package main
+package goserverlessapi
 
 import (
 	"net/http"
@@ -42,7 +42,7 @@ func TestHealthHandler(t *testing.T) {
 				t.Fatalf("Healthhandler returned unexpected status code: got %v want %v",
 					w.Code, tt.wantStatusCode)
 			}
-			if strings.EqualFold(strings.TrimSpace(w.Body.String()), tt.wantResBody) != true {
+			if !strings.EqualFold(strings.TrimSpace(w.Body.String()), tt.wantResBody) {
 				t.Fatalf("Healthhandler returned unexpected body: got %v want %v",
 					w.Body.String(), tt.wantResBody)
 			}
