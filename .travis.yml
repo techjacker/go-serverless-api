@@ -17,7 +17,6 @@ script:
  - dep ensure
  - make lint
  - make test
- - make build
 
 matrix:
   allow_failures:
