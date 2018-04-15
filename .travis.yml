@@ -1,8 +1,7 @@
 language: go
 
 go:
-  - 1.7
-  - 1.8
+  - 1.9
   - master
 
 before_install:
@@ -13,6 +12,7 @@ before_install:
   - go get -u honnef.co/go/tools/cmd/unused
 
 script:
+ - dep ensure
  - make lint
  - make test
  - make build
