@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: 'Boilerplate Go API.'
+Resources:
+  GoAPI:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: main
+      Runtime: go1.x
+      CodeUri: ./go-serverless-api-lambda.zip
+      Events:
+        Request:
+          Type: Api
+          Properties:
+            Method: ANY
+            Path: /{proxy+}
