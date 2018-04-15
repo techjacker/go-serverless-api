@@ -1,0 +1,22 @@
+language: go
+
+go:
+  - 1.7
+  - 1.8
+  - master
+
+before_install:
+  - go get -u github.com/golang/lint/golint
+  - go get -u mvdan.cc/interfacer
+  - go get -u honnef.co/go/tools/cmd/staticcheck
+  - go get -u honnef.co/go/tools/cmd/gosimple
+  - go get -u honnef.co/go/tools/cmd/unused
+
+script:
+ - make lint
+ - make test
+ - make build
+
+matrix:
+  allow_failures:
+    - go: master
