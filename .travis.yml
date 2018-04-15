@@ -11,6 +11,7 @@ before_install:
   - go get -u honnef.co/go/tools/cmd/staticcheck
   - go get -u honnef.co/go/tools/cmd/gosimple
   - go get -u honnef.co/go/tools/cmd/unused
+  - go get -u github.com/golang/dep/cmd/dep
 
 script:
  - dep ensure
