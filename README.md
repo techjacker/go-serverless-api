@@ -15,15 +15,26 @@ Deploy to AWS Lambda & API Gateway with AWS Serverless Application Model (SAM).
 $ aws s3 mb s3://go-serverless-api
 
 $ aws cloudformation package \
-    --template-file /path_to_template/template.yaml \
-    --s3-bucket s3://go-serverless-api \
+    --template-file template.yaml \
+    --s3-bucket go-serverless-api \
     --output-template-file packaged-template.yaml
 
 $ aws cloudformation deploy \
     --template-file packaged-template.yaml \
     --stack-name go-serverless-api-stack \
     --capabilities CAPABILITY_IAM
+
+$ aws cloudformation describe-stacks \
+    --stack-name go-serverless-api-stack
 ```
+
+
+Destroy Stack
+```shell
+@aws cloudformation delete-stack \
+	--stack-name go-serverless-api-stack
+```
+
 
 
 -----------------------------	------------------------------

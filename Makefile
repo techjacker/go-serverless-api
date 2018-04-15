@@ -13,7 +13,7 @@ build-lambda:
 		./cmd/$(PACKAGE_NAME_LAMBDA)
 
 bundle-lambda: build-lambda
-	zip $(PACKAGE_NAME_LAMBDA) $(PACKAGE_NAME_LAMBDA).zip
+	zip $(PACKAGE_NAME_LAMBDA).zip $(PACKAGE_NAME_LAMBDA)
 
 run: build
 	@./$(PACKAGE_NAME)

@@ -6,7 +6,7 @@ go:
   - "1.10"
 
 before_install:
-  - go get -u golang.org/x/lint/golint
+  - go get -u github.com/golang/lint/golint
   - go get -u mvdan.cc/interfacer
   - go get -u honnef.co/go/tools/cmd/staticcheck
   - go get -u honnef.co/go/tools/cmd/gosimple
