@@ -47,7 +47,6 @@ $ make run
 #### Manually call APi
 ```shell
 $ make test-run
-ok
 ```
 
 -----------------------------------------------------------
