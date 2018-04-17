@@ -1,6 +1,6 @@
 PACKAGE_NAME=$(shell basename $(PWD))
 PACKAGE_NAME_LAMBDA=$(PACKAGE_NAME)-lambda
-PORT = 8000
+PORT = 8080
 
 build:
 	@go build -race \
